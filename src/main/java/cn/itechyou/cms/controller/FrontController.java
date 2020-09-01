@@ -284,6 +284,7 @@ public class FrontController {
 			newHtml = parseEngine.parse(html);
 			newHtml = parseEngine.parseCategory(newHtml, category.getCode());
 			newHtml = parseEngine.parseArticle(newHtml, id);
+			newHtml = parseEngine.parsePrevAndNext(newHtml, id);
 			
 			//更新点击数
 			Archives temp = new Archives();
@@ -299,29 +300,6 @@ public class FrontController {
 					ExceptionEnum.TEMPLATE_READ_EXCEPTION.getMessage(),
 					"请仔细检查模版文件，或检查application.yml中的资源目录配置项（web.resource-path）。");
 		}
-		/*
-		 * //上一篇下一篇 
-		 * params = new HashMap<String, Object>(); 
-		 * params.put("arcid", article.get("aid").toString()); 
-		 * params.put("categoryId", category.getId());
-		 * ArchivesWithRownum currentArticle = archivesService.queryArticleRowNum(params);
-		 * 
-		 * params.remove("arcid"); 
-		 * params.put("privNum", (currentArticle.getRownum() - 1) + ""); 
-		 * ArchivesWithRownum prevArc = archivesService.queryArticleRowNum(params);
-		 * 
-		 * params.remove("privNum"); 
-		 * params.put("nextNum", (currentArticle.getRownum() + 1) + ""); 
-		 * ArchivesWithRownum nextArc = archivesService.queryArticleRowNum(params); 
-		 * if(prevArc == null) { 
-		 * prevArc = new ArchivesWithRownum(); 
-		 * prevArc.setTitle("没有了"); 
-		 * } 
-		 * if(nextArc == null) {
-		 * nextArc = new ArchivesWithRownum(); 
-		 * nextArc.setTitle("没有了"); 
-		 * }
-		 */
 	}
 	
 	/**
